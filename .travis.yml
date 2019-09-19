@@ -1,18 +1,28 @@
 language: node_js
 node_js:
   - lts/*
-script:
-  - npm run docs:build
-deploy:
-  provider: pages
-  skip-cleanup: true
-  local_dir: docs/.vuepress/dist
-  github-token: $GITHUB_TOKEN # a token generated on git 1c8aa6ac2e7577ec406148937614eb1264acf96b hub allowing travis to push code on you repository
-  on:
-    all_branches: true
+
+cache:
+  directories:
+    - "node_modules"
 
 branches:
   only:
-    - dev  #指定只有检测到dev分支有变动时才执行任务
-  except:
-    - master # will be deployed to, no need to build it
+    - dev
+
+install:
+  - npm install
+  - npm run build
+
+script:
+  - chmod u+x deploy.sh
+  - bash ./deploy.sh
+
+# deploy:
+#   provider: pages
+#   skip-cleanup: true
+#   github-token: $GITHUB_TOKEN  # Set in travis-ci.org dashboard, marked secure https://docs.travis-ci.com/user/deployment/pages/#Setting-the-GitHub-token
+#   target-branch: gh-pages
+#   local-dir: .vuepress/dist
+#   on:
+branch: dev
