@@ -13,6 +13,6 @@ deploy:
 
 branches:
   only:
-    - dev
+    - dev  #指定只有检测到dev分支有变动时才执行任务
   except:
     - master # will be deployed to, no need to build it
