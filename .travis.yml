@@ -9,8 +9,6 @@ deploy:
   local_dir: docs/.vuepress/dist
   github-token: $GITHUB_TOKEN # a token generated on git 1c8aa6ac2e7577ec406148937614eb1264acf96b hub allowing travis to push code on you repository
   target-branch: master
-  on:
-    branch: dev
 
 branches:
   only:
